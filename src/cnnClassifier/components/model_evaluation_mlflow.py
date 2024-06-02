@@ -6,7 +6,6 @@ from urllib.parse import urlparse
 from cnnClassifier.entity.config_entity import EvaluationConfig
 from cnnClassifier.utils.common import read_yaml, create_directories,save_json
 
-
 class Evaluation:
     def __init__(self, config: EvaluationConfig):
         self.config = config
@@ -54,6 +53,11 @@ class Evaluation:
 
     
     def log_into_mlflow(self):
+        import os
+
+        os.environ['MLFLOW_TRACKING_URI']="https://dagshub.com/iamkhadka46/Kidney-Disease-Classification-MLFlow-DagsHub-DVC-.mlflow"
+        os.environ['MLFLOW_TRACKING_USERNAME'] = "7bd220ae334265b326b90f1b922382126e3e138c"
+
         mlflow.set_registry_uri(self.config.mlflow_uri)
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
         
