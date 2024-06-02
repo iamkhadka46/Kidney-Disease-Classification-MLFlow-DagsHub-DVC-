@@ -1,4 +1,7 @@
+
+
 import os
+os.environ['TF_USE_LEGACY_KERAS']= 'True'
 import urllib.request as request
 from zipfile import ZipFile
 import tensorflow as tf
@@ -43,7 +46,7 @@ class PrepareBaseModel:
         )
 
         full_model.compile(
-            optimizer=tf.keras.optimizers.SGD(learning_rate=learning_rate),
+            optimizer=tf.keras.optimizers.legacy.SGD(learning_rate=learning_rate),
             loss=tf.keras.losses.CategoricalCrossentropy(),
             metrics=["accuracy"]
         )
